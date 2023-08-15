@@ -1,46 +1,22 @@
-from math import floor
-
-
 def binary_search(sorted_li: list[int], target: int) -> int:
-    head_pointer: int = sorted_li.index(sorted_li[0])
-    tail_pointer: int = sorted_li.index(sorted_li[-1])
-    middle_pointer: int = floor((head_pointer + tail_pointer) / 2)
-    found: bool = False
-    cycle_count: int = 0
+    left_pointer: int = 0
+    right_pointer: int = len(sorted_li) - 1
 
-    while not found:
-        cycle_count += 1
-        # print(f"Cycle Count: {cycle_count}")
-        # print(f'tail_pointer*******: {tail_pointer}')
-        # print(f'head pointer: {sorted_li[head_pointer]}')
-        # print(f'middle pointer: {sorted_li[middle_pointer]}')
-        # print(f'tail pointer: {sorted_li[tail_pointer]}')
-        # print(f'target: {target}')
-        if target == sorted_li[middle_pointer]:
-            return target
+    while left_pointer <= right_pointer:
+        middle_pointer: int = (left_pointer + right_pointer) // 2
 
-        elif target == sorted_li[head_pointer]:
-            return target
-
-        elif target == sorted_li[tail_pointer]:
-            return target
+        if target in [
+            sorted_li[middle_pointer],
+            sorted_li[left_pointer],
+            sorted_li[right_pointer],
+        ]:
+            return middle_pointer
 
         if sorted_li[middle_pointer] > target:
-            tail_pointer = sorted_li.index(sorted_li[middle_pointer - 1])
-            middle_pointer = floor((head_pointer + tail_pointer) / 2)
-
-
+            right_pointer = middle_pointer - 1
         elif sorted_li[middle_pointer] < target:
-            head_pointer = sorted_li.index(sorted_li[middle_pointer + 1])
-            middle_pointer = floor((head_pointer + tail_pointer) / 2)
-
-
-        # if cycle_count >= 5:
-        #     break
-        # print('\n')
+            left_pointer = middle_pointer + 1
 
 
 sorted_li: list[int] = [11, 14, 18, 20, 24, 25, 35, 39, 41, 44, 45, 48, 50]
-# print(binary_search(sorted_li, 35))
-
-binary_search(sorted_li, 14)
+print(binary_search(sorted_li, 44))
