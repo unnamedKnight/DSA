@@ -9,6 +9,15 @@ class Tree:
     def __init__(self, value) -> None:
         self.root = Node(value)
 
+    def pre_order(self, start: int, traversal: list[int]):
+        if start is None:
+            return
+        traversal.append(start.value)
+
+        self.pre_order(start.left, traversal)
+        self.pre_order(start.right, traversal)
+        return traversal
+
 
 tree = Tree(3)
 tree.root.left = Node(4)
@@ -23,3 +32,6 @@ tree.root.right.right= Node(9)
 # print(tree.root.value)
 # print(tree.root.left.value)
 # print(tree.root.right)
+
+
+print(tree.pre_order(tree.root, []))
