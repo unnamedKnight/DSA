@@ -18,16 +18,25 @@ class Tree:
         self.pre_order(start.right, traversal)
         return traversal
 
+    def inorder(self, start: int, traversal: list[int]):
+        if start is None:
+            return
+
+        self.pre_order(start.left, traversal)
+        traversal.append(start.value)
+        self.pre_order(start.right, traversal)
+        return traversal
+
 
 tree = Tree(3)
 tree.root.left = Node(4)
 tree.root.right = Node(5)
 
 tree.root.left.left = Node(6)
-tree.root.left.right= Node(7)
+tree.root.left.right = Node(7)
 
 tree.root.right.left = Node(8)
-tree.root.right.right= Node(9)
+tree.root.right.right = Node(9)
 
 # print(tree.root.value)
 # print(tree.root.left.value)
