@@ -27,6 +27,15 @@ class Tree:
         self.pre_order(start.right, traversal)
         return traversal
 
+    def postorder(self, start: int, traversal: list[int]):
+        if start is None:
+            return
+
+        self.pre_order(start.left, traversal)
+        self.pre_order(start.right, traversal)
+        traversal.append(start.value)
+        return traversal
+
 
 tree = Tree(3)
 tree.root.left = Node(4)
