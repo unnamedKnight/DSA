@@ -5,6 +5,10 @@ class Node:
         self.right = None
 
 
+'''
+Implementation of DFS
+'''
+
 class Tree:
     def __init__(self, value) -> None:
         self.root = Node(value)
